@@ -86,6 +86,21 @@ for (i in 1:size) {
 
 ``` 
 
+__histogram of the total number of steps taken each day after missing values were imputed__
+
+```{r, echo=TRUE}
+# aggregating steps by interval
+answer3 <- aggregate(steps ~ interval, FUN = mean, data = newDataset)
+#calculating steps each day *after* missing data is populated
+numberOfStepsEachDayAfterMissingData <- answer3$steps
+qplot(numberOfStepsEachDayAfterMissingData,
+      geom="histogram",
+      binwidth = 5,
+      main = "Histogram for number of Steps each Day", 
+      xlab = "Number of Steps",  
+      fill=I("blue"), 
+      col=I("red"))
+```
 
 # Are there differences in activity patterns between weekdays and weekends?
 
